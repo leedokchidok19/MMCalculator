@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Man Month Calculator</title>
+    <style>
+        :root {
+            --com-border: 1px solid black;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .my-auto {
+            margin: 0 auto;
+        }
+        .w-100 {
+            width: 100%;
+            max-width: 100%;
+        }
+        .w-50 {
+            width: 50%;
+            max-width: 50%;
+        }
+        h1 {
+            text-align: center;
+        }
+        .d-none {
+            display: none;
+        }
+        header {
+            border-bottom: var(--com-border);
+        }
+        section {
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            margin: 1vh auto 0;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: var(--com-border);
+        }
+        .description {
+            margin-top: 1vh;
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+        input[type=text],
+        input[type=number],
+        select {
+            width: 15vw;
+            height: 100%;
+            text-align: right;
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+        }
+        select {
+            text-align-last: center;
+        }
+        .grade {
+            display: table;
+            border: var(--com-border);
+            border-collapse: separate;
+        }
+        .add_btn {
+            margin: auto 0 0 auto;
+        }
+        .result {
+            margin: 2vh 0 auto auto;
+        }
+        #toggle {
+            text-align: center;
+        }
+        .triangle {
+            width: 14px;
+            transform: rotate(180deg);
+        }
+        .mm {
+            font-size: 0.725rem;
+            color: gray;
+        }
+        .calculator {
+            position: fixed;
+            right: 3vw;
+            bottom: 3vh;
+            width: 100px;
+            height: 100px;
+            background: black;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .calculator-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            height: 90%;
+            background: white;
+            border-radius: 50px;
+            transform: translate(-50%, -50%);
+        }
+        .calculator-icon {
+            position: relative;
+            top: 15px;
+            left: 4px;
+            width: 65px;
+            height: 65px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Man Month Calculator</h1>
+        </nav>
+    </header>
+    <section>
+        <div class="row w-100">
+            <h1 class="my-auto">맨먼스(M/M)란?</h1>
+            <p class="my-auto d-none">man-month란 프로젝트에 투입되는 월인원이다</p>
+        </div>
+        <div class="row">
+            <div class="row w-50">
+                <div class="grade">초급 : <input type="text" value="1"> 만원</div>
+                <div class="grade">중급 : <input type="text" value="1"> 만원</div>
+                <div class="grade">고급 : <input type="text" value="1"> 만원</div>
+            </div>
+            <div class="row w-50">
+                <div class="add_btn">
+                    <span>Add</span><input id="add_rows" type="text" value="1">Row(s)
+                </div>
+            </div>
+        </div>
+        <div class="row my-auto w-100">
+            <table class="w-100 description">
+                <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>등급</th>
+                        <th>투입 인원</th>
+                        <th>투입 기간</th>
+                        <th>합계</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td><select id="g_1" class="options"><option value="1">초급</option></select></td>
+                        <td><input id="p_1" class="options" type="number" value="1"><span class="mm">M</span></td>
+                        <td><input id="m_1" class="options" type="number" value="1"><span class="mm">M</span></td>
+                        <td><input id="r_1" class="options" type="number"><span class="mm">M/M</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row result">
+            <span>총 합계 : </span>
+            <input id="total" type="text" readonly>
+            <span class="mm">M/M</span>
+        </div>
+    </section>
+    <footer>
+        <article>
+            <div id="toggle">
+                <p>펼치기</p>
+                <img src="/img/triangle-240.png" alt="triangle" class="triangle">
+            </div>
+            <img id="price" src="/img/price-table-2020.png" alt="노임단가표" class="w-100 d-none">
+        </article>
+        <article>
+            <a href="#">
+                <div class="calculator" onclick="calculator">
+                    <div class="calculator-circle">
+                        <img src="/img/calculator-240.png" alt="calculator" class="calculator-icon">
+                    </div>
+                </div>
+            </a>
+        </article>
+    </footer>
+
+    <script>
+        let table_tbody = document.querySelector('.description > tbody');
+        let add_btn = document.querySelector('.add_btn');
+        let tr_count = 2//document.getElementById('add_rows').value;
+        add_btn.addEventListener('click', function(event){
+            table_tbody.innerHTML   +='<tr>'
+                                +   '<th>'+tr_count+'</th>'
+                                +   '<td><select id="g_'+tr_count+'" class="options"><option value="1">초급</option></select></td>'
+                                +   '<td><input id="p_'+tr_count+'" class="options" type="number" value="1"><span class="mm">M</span></td>'
+                                +   '<td><input id="m_'+tr_count+'" class="options" type="number" value="1"><span class="mm">M</span></td>'
+                                +   '<td><input id="r_'+tr_count+'" class="options" type="number"><span class="mm">M/M</span></td>'
+                                +'</tr>'
+            tr_count++;
+        });
+
+        let total = document.querySelector('#total');
+        
+        let inputs = document.querySelectorAll('.options');
+        for(let i = 0; i < inputs.length; i++){
+            inputs[i].addEventListener('blur', function(event){
+                input_blur();
+            });
+        }
+
+        function input_blur(){
+            let table_tbody = document.querySelectorAll('tbody > tr');
+            let total_result = 0;
+            for(let i =1; i <= table_tbody.length; i++){
+                let grade = document.getElementById('g_'+i);
+                let people = document.getElementById('p_'+i);
+                let month = document.getElementById('m_'+i);
+                let result = document.getElementById('r_'+i);
+                
+                result.value = grade.value * people.value * month.value;
+                total_result += Number(result.value);
+            }
+            
+            total.value = total_result;
+        }
+        //단가표 펼치기/접기
+        let toggle = document.getElementById('toggle');
+        toggle.addEventListener('click', function(){
+            let price = document.getElementById('price');
+            let toggle_p = document.querySelector('#toggle > p');
+            let triangle = document.querySelector('.triangle');
+            //toggle 기능 img
+            let isprice = price.classList.toggle('d-none');
+            if(isprice){
+                toggle_p.textContent = '펼치기';
+                triangle.style.transform = 'rotate(180deg)';
+            }else{
+                toggle_p.textContent = '접기';
+                triangle.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
+
+</body>
+</html>
