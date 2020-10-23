@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Man Month Calculator</title>
+
     <style>
         :root {
             --com-border: 1px solid black;
@@ -111,13 +112,16 @@
             height: 65px;
         }
     </style>
+
 </head>
 <body>
+
     <header>
         <nav>
             <h1>Man Month Calculator</h1>
         </nav>
     </header>
+
     <section>
         <div class="row w-100">
             <h1 class="my-auto">맨먼스(M/M)란?</h1>
@@ -167,15 +171,15 @@
         <article>
             <div id="toggle">
                 <p>펼치기</p>
-                <img src="/img/triangle-240.png" alt="triangle" class="triangle">
+                <img src="./img/triangle-240.png" alt="triangle" class="triangle">
             </div>
-            <img id="price" src="/img/price-table-2020.png" alt="노임단가표" class="w-100 d-none">
+            <img id="price" src="./img/price-table-2020.png" alt="노임단가표" class="w-100 d-none">
         </article>
         <article>
-            <a href="#">
-                <div class="calculator" onclick="calculator">
+            <a href="./calculator.html">
+                <div class="calculator" onclick="calculator()">
                     <div class="calculator-circle">
-                        <img src="/img/calculator-240.png" alt="calculator" class="calculator-icon">
+                        <img src="./img/calculator-240.png" alt="calculator" class="calculator-icon">
                     </div>
                 </div>
             </a>
@@ -227,14 +231,17 @@
             let price = document.getElementById('price');
             let toggle_p = document.querySelector('#toggle > p');
             let triangle = document.querySelector('.triangle');
+            let calculator = document.querySelector('.calculator')
             //toggle 기능 img
             let isprice = price.classList.toggle('d-none');
             if(isprice){
                 toggle_p.textContent = '펼치기';
                 triangle.style.transform = 'rotate(180deg)';
+                calculator.classList.remove('d-none');
             }else{
                 toggle_p.textContent = '접기';
                 triangle.style.transform = 'rotate(0deg)';
+                calculator.classList.add('d-none');
             }
         });
     </script>
