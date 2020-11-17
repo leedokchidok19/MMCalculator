@@ -1,0 +1,111 @@
+/*공통*/
+:root {
+            --com-border: 1px solid black;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.my-auto {
+    margin: 0 auto;
+}
+.w-100 {
+    width: 100%;
+    max-width: 100%;
+}
+.w-50 {
+    width: 50%;
+    max-width: 50%;
+}
+h1 {
+    text-align: center;
+}
+.d-none {
+    display: none;
+}
+header {
+    border-bottom: var(--com-border);
+}
+section {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    margin: 1vh auto 0;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: var(--com-border);
+}
+.description {
+    margin-top: 1vh;
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+input[type=text],
+input[type=number],
+select {
+    width: 15vw;
+    height: 100%;
+    text-align: right;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+}
+select {
+    text-align-last: center;
+}
+/*공통*/
+
+.grade {
+    display: table;
+    border: var(--com-border);
+    border-collapse: separate;
+}
+.add_row {
+    margin: auto 0 0 auto;
+}
+.result {
+    margin: 2vh 0 auto auto;
+}
+#toggle {
+    text-align: center;
+}
+.triangle {
+    width: 14px;
+    transform: rotate(180deg);
+}
+.mm {
+    font-size: 0.725rem;
+    color: gray;
+}
+
+/*계산기 아이콘*/
+.calculator {
+    position: fixed;
+    right: 3vw;
+    bottom: 3vh;
+    width: 100px;
+    height: 100px;
+    background: black;
+    border-radius: 20px;
+    text-align: center;
+}
+.calculator-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    background: white;
+    border-radius: 50px;
+    transform: translate(-50%, -50%);
+}
+.calculator-icon {
+    position: relative;
+    top: 15px;
+    left: 4px;
+    width: 65px;
+    height: 65px;
+}
