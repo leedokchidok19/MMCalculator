@@ -15,14 +15,25 @@
 
     <section>
         <div id="mm_title" class="row w-100">
-            <h1 class="my-auto">맨먼스(M/M)란?</h1>
-            <p class="my-auto d-none">man-month란 프로젝트에 투입되는 월인원이다</p>
+            <h1 class="my-auto" data-tooltip="man-month란 프로젝트에 투입되는 월인원이다">맨먼스(M/M)란?</h1>
         </div>
-        <div class="row">
+        <div class="row w-100">
             <div class="row w-50">
-                <div class="grade">초급 : <input type="text" value="1"> 만원</div>
-                <div class="grade">중급 : <input type="text" value="1"> 만원</div>
-                <div class="grade">고급 : <input type="text" value="1"> 만원</div>
+                <div class="grade">
+                    <span>초급 :</span>
+                    <input type="text" value="1">
+                    <span>만원</span>
+                </div>
+                <div class="grade">
+                    <span>중급 :</span>
+                    <input type="text" value="1">
+                    <span>만원</span>
+                </div>
+                <div class="grade">
+                    <span>고급 :</span>
+                    <input type="text" value="1">
+                    <span>만원</span>
+                </div>
             </div>
             <div class="row w-50">
                 <div class="add_row">
@@ -45,10 +56,23 @@
                 <tbody>
                     <tr>
                         <th>1</th>
-                        <td><select id="g_1" class="options"><option value="1">초급</option></select></td>
-                        <td><input id="p_1" class="options" type="number" value="1"><span class="mm">M</span></td>
-                        <td><input id="m_1" class="options" type="number" value="1"><span class="mm">M</span></td>
-                        <td><input id="r_1" class="options" type="number"><span class="mm">M/M</span></td>
+                        <td>
+                            <select id="g_1" class="options">
+                                <option value="1">초급</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input id="p_1" class="options" type="number" value="1">
+                            <span class="mm">M</span>
+                        </td>
+                        <td>
+                            <input id="m_1" class="options" type="number" value="1">
+                            <span class="mm">M</span>
+                        </td>
+                        <td>
+                            <input id="r_1" class="options" type="number">
+                            <span class="mm">M/M</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -62,8 +86,10 @@
     <footer>
         <article>
             <div id="toggle">
-                <p>펼치기</p>
-                <img src="./img/triangle-240.png" alt="triangle" class="triangle">
+                <div class="my-auto triangle">
+                    <p>펼치기</p>
+                </div>
+                <!--<img src="./img/triangle-240.png" alt="triangle">-->
             </div>
             <img id="price" src="./img/price-table-2020.png" alt="노임단가표" class="w-100 d-none">
         </article>
@@ -121,18 +147,20 @@
         let toggle = document.getElementById('toggle');
         toggle.addEventListener('click', function(){
             let price = document.getElementById('price');
-            let toggle_p = document.querySelector('#toggle > p');
+            let toggle_p = document.querySelector('#toggle p');
             let triangle = document.querySelector('.triangle');
             let calculator = document.querySelector('.calculator')
             //toggle 기능 img
             let isprice = price.classList.toggle('d-none');
             if(isprice){
                 toggle_p.textContent = '펼치기';
-                triangle.style.transform = 'rotate(180deg)';
+                toggle_p.style.transform = 'rotate(0deg)';
+                triangle.style.transform = 'rotate(0deg)';
                 calculator.classList.remove('d-none');
             }else{
                 toggle_p.textContent = '접기';
-                triangle.style.transform = 'rotate(0deg)';
+                toggle_p.style.transform = 'rotate(180deg)';
+                triangle.style.transform = 'rotate(180deg)';
                 calculator.classList.add('d-none');
             }
         });

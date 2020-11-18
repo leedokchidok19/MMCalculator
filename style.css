@@ -1,6 +1,7 @@
 /*공통*/
 :root {
-            --com-border: 1px solid black;
+    --com-bg: rgb(0, 0, 0);
+    --com-border: 1px solid black;
 }
 .row {
     display: flex;
@@ -46,7 +47,7 @@ table, th, td {
 input[type=text],
 input[type=number],
 select {
-    width: 15vw;
+    width: auto;
     height: 100%;
     text-align: right;
     background-color: transparent;
@@ -58,6 +59,21 @@ select {
 }
 /*공통*/
 
+/*맨먼스 - 툴팁*/
+#mm_title > [data-tooltip]:hover {
+    position: relative;
+}
+#mm_title > [data-tooltip]:hover:after {
+    border: var(--com-border);
+    position: absolute;
+    top: 5vh;
+    left: -20vw;
+    width: 70vw;
+    content: attr(data-tooltip);
+    font-size: 1.25rem;
+}
+/*맨먼스 - 툴팁*/
+
 .grade {
     display: table;
     border: var(--com-border);
@@ -66,20 +82,41 @@ select {
 .add_row {
     margin: auto 0 0 auto;
 }
+#add_rows {
+    padding: 0.25rem;
+    width: 3vw;
+    border: none;
+    border-bottom: var(--com-border); 
+    outline: none;
+}
 .result {
     margin: 2vh 0 auto auto;
 }
-#toggle {
-    text-align: center;
-}
-.triangle {
-    width: 14px;
-    transform: rotate(180deg);
-}
+
 .mm {
     font-size: 0.725rem;
     color: gray;
 }
+
+/*펼치기/접기 버튼*/
+#toggle {
+    text-align: center;
+}
+.triangle {
+    transform: rotate(0deg);
+}
+#toggle > div {
+    background: url(img/triangle-240.png) no-repeat;
+    background-size: contain;
+    width: 70px;
+    height: 70px;
+    line-height: 92px;
+}
+#toggle > div > p {
+    z-index: 3;
+    color: white;
+}
+/*펼치기/접기 버튼*/
 
 /*계산기 아이콘*/
 .calculator {
