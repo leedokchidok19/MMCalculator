@@ -57,114 +57,89 @@
                     <tr>
                         <th>1</th>
                         <td>
-                            <select id="g_1" class="options">
+                            <select id="g_1" class="w-100">
                                 <option value="1">초급</option>
                             </select>
                         </td>
                         <td>
-                            <input id="p_1" class="options" type="number" value="1">
-                            <span class="mm">M</span>
+                            <input id="p_1" type="number" value="1">
+                            <label for="p_1">M</label>
                         </td>
                         <td>
-                            <input id="m_1" class="options" type="number" value="1">
-                            <span class="mm">M</span>
+                            <input id="m_1" type="number" value="1">
+                            <label for="m_1">M</label>
                         </td>
                         <td>
-                            <input id="r_1" class="options" type="number">
-                            <span class="mm">M/M</span>
+                            <input id="r_1" type="number">
+                            <label for="r_1">M/M</label>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="row result">
-            <span>총 합계 : </span>
+            <div>총 합계 :</div>
             <input id="total" type="text" readonly>
-            <span class="mm">M/M</span>
+            <div>M/M</div>
         </div>
     </section>
     <footer>
         <article>
-            <div id="toggle">
-                <div class="my-auto triangle">
-                    <p>펼치기</p>
-                </div>
-                <!--<img src="./img/triangle-240.png" alt="triangle">-->
+            <div id="toggle" class="my-auto">
+                <p>펼치기</p>
+                <img src="./img/triangle-240.png" alt="triangle" class="triangle">
             </div>
             <img id="price" src="./img/price-table-2020.png" alt="노임단가표" class="w-100 d-none">
         </article>
         <article>
-            <a href="./calculator.html">
-                <div class="calculator" onclick="calculator()">
-                    <div class="calculator-circle">
-                        <img src="./img/calculator-240.png" alt="calculator" class="calculator-icon">
-                    </div>
+            <div class="calculator">
+                <div class="calculator-circle">
+                    <img src="./img/calculator-240.png" alt="calculator" class="calculator-icon">
                 </div>
-            </a>
+            </div>
         </article>
     </footer>
 
-    <script>
-        let table_tbody = document.querySelector('.description > tbody');
-        let add_btn = document.querySelector('#add_btn');
-        let tr_count = document.querySelector('#add_rows');
-        add_btn.addEventListener('click', function(event){
-            table_tbody.innerHTML+=`<tr>
-                                        <th>${tr_count.value}</th>
-                                        <td><select id="g_${tr_count.value}" class="options"><option value="1">초급</option></select></td>
-                                        <td><input id="p_${tr_count.value}" class="options" type="number" value="1"><span class="mm">M</span></td>
-                                        <td><input id="m_${tr_count.value}" class="options" type="number" value="1"><span class="mm">M</span></td>
-                                        <td><input id="r_${tr_count.value}" class="options" type="number"><span class="mm">M/M</span></td>
-                                    </tr>`
-        });
-
-        let total = document.querySelector('#total');
-        
-        let inputs = document.querySelectorAll('.options');
-        for(let i = 0; i < inputs.length; i++){
-            inputs[i].addEventListener('blur', function(event){
-                input_blur();
-                console.log(`i is ${i}`);
-            });
-        }
-
-        function input_blur(){
-            let table_tbody = document.querySelectorAll('tbody > tr');
-            let total_result = 0;
-            for(let i =1; i <= table_tbody.length; i++){
-                let grade = document.getElementById('g_'+i);
-                let people = document.getElementById('p_'+i);
-                let month = document.getElementById('m_'+i);
-                let result = document.getElementById('r_'+i);
-                
-                result.value = grade.value * people.value * month.value;
-                total_result += Number(result.value);
-            }
-            
-            total.value = total_result;
-        }
-        //단가표 펼치기/접기
-        let toggle = document.getElementById('toggle');
-        toggle.addEventListener('click', function(){
-            let price = document.getElementById('price');
-            let toggle_p = document.querySelector('#toggle p');
-            let triangle = document.querySelector('.triangle');
-            let calculator = document.querySelector('.calculator')
-            //toggle 기능 img
-            let isprice = price.classList.toggle('d-none');
-            if(isprice){
-                toggle_p.textContent = '펼치기';
-                toggle_p.style.transform = 'rotate(0deg)';
-                triangle.style.transform = 'rotate(0deg)';
-                calculator.classList.remove('d-none');
-            }else{
-                toggle_p.textContent = '접기';
-                toggle_p.style.transform = 'rotate(180deg)';
-                triangle.style.transform = 'rotate(180deg)';
-                calculator.classList.add('d-none');
-            }
-        });
-    </script>
+<!--계산기-->
+    <section id="calculator" class="d-none">
+        <div class="main">
+            <form name="form" action="">
+                <input id="text_view" type="text" name="textview">
+                <table>
+                    <tr>
+                        <td><input id="calculator_clear" class="button" type="button" value="C"></td>
+                        <td><input id="calculator_back" class="button" type="button" value="<"></td>
+                        <td><input class="button calculator_insert" type="button" value="/" data-set-value="/"></td>
+                        <td><input class="button calculator_insert" type="button" value="X" data-set-value="*"></td>
+                    </tr>
+                    <tr>
+                        <td><input class="button calculator_insert" type="button" value="7" data-set-value="7"></td>
+                        <td><input class="button calculator_insert" type="button" value="8" data-set-value="8"></td>
+                        <td><input class="button calculator_insert" type="button" value="9" data-set-value="9"></td>
+                        <td><input class="button calculator_insert" type="button" value="-" data-set-value="-"></td>
+                    </tr>
+                    <tr>
+                        <td><input class="button calculator_insert" type="button" value="4" data-set-value="4"></td>
+                        <td><input class="button calculator_insert" type="button" value="5" data-set-value="5"></td>
+                        <td><input class="button calculator_insert" type="button" value="6" data-set-value="6"></td>
+                        <td><input class="button calculator_insert" type="button" value="+" data-set-value="+"></td>
+                    </tr>
+                    <tr>
+                        <td><input class="button calculator_insert" type="button" value="1" data-set-value="1"></td>
+                        <td><input class="button calculator_insert" type="button" value="2" data-set-value="2"></td>
+                        <td><input class="button calculator_insert" type="button" value="3" data-set-value="3"></td>
+                        <td rowspan="5"><input id="calculator_equal" class="button" style="height: 106px;" type="button" value="="></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="button calculator_insert" style="width: 106px;" type="button" value="0" data-set-value="0"></td>
+                        <td><input class="button calculator_insert" type="button" value="." data-set-value="."></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </section>
+<!--계산기-->
+    <script src="app.js"></script>
 
 </body>
 </html>

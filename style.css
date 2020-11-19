@@ -11,7 +11,7 @@
     margin: 0 auto;
 }
 .w-100 {
-    width: 100%;
+    width: 100% !important;
     max-width: 100%;
 }
 .w-50 {
@@ -36,7 +36,7 @@ section {
 table {
     border-collapse: collapse;
 }
-table, th, td {
+table.description, .description th, .description td {
     border: var(--com-border);
 }
 .description {
@@ -52,6 +52,7 @@ select {
     text-align: right;
     background-color: transparent;
     border: none;
+    outline: none;
     font-weight: bold;
 }
 select {
@@ -71,9 +72,11 @@ select {
     width: 70vw;
     content: attr(data-tooltip);
     font-size: 1.25rem;
+    font-weight: 200;
 }
 /*맨먼스 - 툴팁*/
 
+/*테이블*/
 .grade {
     display: table;
     border: var(--com-border);
@@ -89,32 +92,47 @@ select {
     border-bottom: var(--com-border); 
     outline: none;
 }
-.result {
-    margin: 2vh 0 auto auto;
+.description td {
+    position: relative;
 }
-
-.mm {
+.description td input {
+    width: 85%;
+}
+.description td label {
+    position: absolute;
+    top: 0.275rem;
+    right: 0.5rem;
     font-size: 0.725rem;
     color: gray;
 }
+/*테이블*/
+
+/*총합계*/
+.result {
+    display: flex;
+    margin: 2vh 0 auto auto;
+    border-bottom: var(--com-border);
+}
+#total {
+    width: 10vw;
+    font-size: 1.25rem;
+}
+/*총합계*/
 
 /*펼치기/접기 버튼*/
 #toggle {
+    width: 100px;
+    height: 30px;
     text-align: center;
 }
+#toggle > p {
+    display: inline;
+    font-size: 1rem;
+}
 .triangle {
+    width: 1rem;/*P의 폰트 크기와 같은 크기 유지*/
     transform: rotate(0deg);
-}
-#toggle > div {
-    background: url(img/triangle-240.png) no-repeat;
-    background-size: contain;
-    width: 70px;
-    height: 70px;
-    line-height: 92px;
-}
-#toggle > div > p {
-    z-index: 3;
-    color: white;
+    vertical-align: middle;
 }
 /*펼치기/접기 버튼*/
 
@@ -146,3 +164,33 @@ select {
     width: 65px;
     height: 65px;
 }
+
+/*계산기*/
+.button {
+    width: 50px;
+    height: 50px;
+    font-size: 1rem;
+    margin: 1px;
+    background: linear-gradient(to left top, deepskyblue, deeppink);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+#text_view {
+    width: 208px;
+    height: 40px;
+    margin: 1px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 5px;
+    border: none;
+    background: dimgray;
+    color: whitesmoke;
+}
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*계산기*/
