@@ -40,7 +40,7 @@ function input_blur(){
 
 //맨먼스 - 단가표 펼치기/접기
 let toggle = document.querySelector('#toggle');
-toggle.addEventListener('click', function(){
+toggle.addEventListener('click', () => {
     let price = document.querySelector('#price');
     let toggle_p = document.querySelector('#toggle p');
     let triangle = document.querySelector('.triangle');
